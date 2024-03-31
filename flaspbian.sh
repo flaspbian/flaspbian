@@ -352,17 +352,13 @@ create_app_service() {
   cat <<EOF | sudo tee /etc/systemd/system/$app.flapp.service > /dev/null
 [Unit]
 Description=$app Application Service
-After=graphical.target
 
 [Service]
-ExecStart=/usr/local/bin/flutter-pi --release $flapps_dir/$app
-User=$(whoami)
-Group=$(whoami)
-Environment="DISPLAY=:0"
+ExecStart=/usr/local/bin/flutter-pi --release $flapps_dir/$app -r 90
 Restart=always
 
 [Install]
-WantedBy=graphical.target
+WantedBy=multi-user.target
 EOF
   # Enable the service
   sudo systemctl daemon-reload && sudo systemctl enable $app.flapp.service
