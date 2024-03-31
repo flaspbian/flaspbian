@@ -260,18 +260,13 @@ show_app_usage() {
 install_app() {
   echo "Installing Flaspbian App..."
 
-  echo "\$0=$0"
-  echo "\$1=$1"
-  echo "\$2=$2"
-  echo "\$3=$3"
-
-  app="$2"
-  url="$3"
+  app="$1"
+  url="$2"
   apparchive="~/$app.flapp"
 
   # Check for app and URL arguments
   if [[ -z "$app" ]] || [[ -z "$url" ]]; then
-    echo "Usage: $0 app <app> <url>"
+    echo "Usage: $0 app install <app> <url>"
     exit 1
   fi
 
