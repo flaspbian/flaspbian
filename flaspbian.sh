@@ -319,12 +319,12 @@ update_app() {
 uninstall_app() {
   echo "Uninstalling Flaspbian App..."
 
-  app="$2"
+  app="$1"
   apparchive="$user_home/$app.flapp"
 
   # Check for app argument
   if [[ -z "$app" ]]; then
-    echo "Usage: $0 <app>"
+    echo "Usage: $0 app uninstall <app>"
     exit 1
   fi
 
