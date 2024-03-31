@@ -336,8 +336,17 @@ uninstall_app() {
 
   echo "Uninstalling $app..."
   remove_app_service
-  sudo rm -R $flapps_dir/$app
-  sudo rm $apparchive
+
+  # Remove the app directory, only if it exists
+  if [[ -d $flapps_dir/$app ]]; then
+    sudo rm -R $flapps_dir/$app
+  fi
+
+  # Remove the app archive, only if it exists
+  if [[ -f $apparchive ]]; then
+    sudo rm $apparchive
+  fi
+
   sudo systemctl daemon-reload
 }
 # List Flaspbian Apps
