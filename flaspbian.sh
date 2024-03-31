@@ -193,7 +193,6 @@ uninstall_engine() {
   fi
 
   # Reset boot options to their defaults
-  # reset_boot_options
 
   echo "Flaspbian has been uninstalled."
   # Optionally prompt for a reboot here
