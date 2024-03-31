@@ -2,8 +2,9 @@
 
 set -eo pipefail  # Exit on error and fail if a pipe fails
 
-flutter_pi_dir="/home/endurance/flutter-pi" # Set the Flaspbian directory
-flapps_dir="/home/endurance/.flapps" # Set the Flaspbian directory
+user_home="/home/endurance" # Set the Flaspbian directory
+flutter_pi_dir="$user_home/flutter-pi" # Set the Flaspbian directory
+flapps_dir="$user_home/.flapps" # Set the Flaspbian directory
 
 #OK
 # Display System Information
