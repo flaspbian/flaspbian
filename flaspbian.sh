@@ -292,8 +292,8 @@ install_app() {
 update_app() {
   echo "Updating Flaspbian App..."
 
-  app="$2"
-  url="$3"
+  app="$1"
+  url="$2"
   apparchive="$user_home/$app.flapp"
 
   # Check for app and URL arguments
