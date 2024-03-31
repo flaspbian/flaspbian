@@ -288,7 +288,6 @@ install_app() {
   mkdir -p $flapps_dir/$app 
   tar -xzvf $apparchive -C $flapps_dir/$app
   sudo rm $apparchive
-  sudo rm -R $flapps_dir/$app
   sudo mv $flapps_dir/$app/build/flutter_assets/* $flapps_dir/$app
   create_app_service
   echo "Flaspbian App '$app' has been installed."
@@ -321,6 +320,7 @@ update_app() {
   mkdir -p $flapps_dir/$app 
   tar -xzvf $apparchive -C $flapps_dir/$app
   sudo rm $apparchive
+  sudo rm -R $flapps_dir/$app
   sudo mv $flapps_dir/$app/build/flutter_assets/* $flapps_dir/$app
   create_app_service
   echo "Flaspbian App '$app' has been updated."
