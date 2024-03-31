@@ -277,6 +277,12 @@ install_app() {
     exit 1
   fi
 
+  # Deny installation if any app is installed
+  if [[ -d $flapps_dir ]]; then
+    echo "Error: an app is already installed."
+    exit 1
+  fi
+
   echo "Installing $app from web..."
   curl -L "$url" -o $apparchive
   mkdir -p $flapps_dir/$app 
