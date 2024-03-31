@@ -308,19 +308,19 @@ update_app() {
     exit 1
   fi
 
-  # Check if the app is already installed
+  # Check if the same app is already installed, if not, deny update
   if [[ ! -d $flapps_dir/$app ]]; then
     echo "Error: an app '$app' is not installed."
     exit 1
   fi
 
   echo "Updating $app from web..."
+  remove_app_service
   curl -L "$url" -o $apparchive
   mkdir -p $flapps_dir/$app 
   tar -xzvf $apparchive -C $flapps_dir/$app
   sudo rm $apparchive
   sudo mv $flapps_dir/$app/build/flutter_assets/* $flapps_dir/$app
-  remove_app_service
   create_app_service
   echo "Flaspbian App '$app' has been updated."
   reboot
