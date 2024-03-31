@@ -290,13 +290,13 @@ install_app() {
 update_app() {
   echo "Updating Flaspbian App..."
 
-  app="$2"
-  url="$3"
-  apparchive="~/$app.flapp"
+  app="$1"
+  url="$2"
+  apparchive="$user_home/$app.flapp"
 
   # Check for app and URL arguments
   if [[ -z "$app" ]] || [[ -z "$url" ]]; then
-    echo "Usage: $0 <app> <url>"
+    echo "Usage: $0 app install <app> <url>"
     exit 1
   fi
 
@@ -320,6 +320,7 @@ uninstall_app() {
   echo "Uninstalling Flaspbian App..."
 
   app="$2"
+  apparchive="$user_home/$app.flapp"
 
   # Check for app argument
   if [[ -z "$app" ]]; then
