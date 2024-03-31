@@ -284,6 +284,8 @@ install_app() {
   sudo rm $apparchive
   sudo mv $flapps_dir/$app/build/flutter_assets/* $flapps_dir/$app
   create_app_service
+  echo "Flaspbian App '$app' has been installed."
+  reboot
 }
 
 # Update Flaspbian App
@@ -314,6 +316,8 @@ update_app() {
   sudo mv $flapps_dir/$app/build/flutter_assets/* $flapps_dir/$app
   remove_app_service
   create_app_service
+  echo "Flaspbian App '$app' has been updated."
+  reboot
 }
 # Uninstall Flaspbian App
 uninstall_app() {
@@ -348,6 +352,8 @@ uninstall_app() {
   fi
 
   sudo systemctl daemon-reload
+  echo "Flaspbian App '$app' has been uninstalled."
+  reboot
 }
 # List Flaspbian Apps
 list_apps() {
