@@ -369,7 +369,7 @@ create_app_service() {
 Description=$app Application Service
 
 [Service]
-ExecStart=/usr/local/bin/flutter-pi --rotation 90 --release $flapps_dir/$app
+ExecStart=/usr/local/bin/flutter-pi -r 90 --release $flapps_dir/$app
 Restart=always
 
 [Install]
