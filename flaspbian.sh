@@ -174,18 +174,17 @@ update_engine() {
 uninstall_engine() {
   echo "Uninstalling Flaspbian..."
   
-  # Stop all flapp services  
+  # Stop and Remove app services, if any
   if [[ -f /etc/systemd/system/*.flapp.service ]]; then
     sudo systemctl stop *.flapp.service
+    sudo systemctl disable *.flapp.service
+    sudo rm /etc/systemd/system/*.flapp.service
+    sudo systemctl daemon-reload
   fi
-  
-  # Remove flapps directory
-  if [[ -d $flapps_dir ]]; then
-    # Remove app services
-    for app in $(ls $flapps_dir); do
-      remove_app_service
-    done
-    sudo rm -rf $flapps_dir
+
+  # Remove flapps directory if it exists
+  if [[ -d "$flapps_dir" ]]; then
+    sudo rm -rf "$flapps_dir"
   fi
 
   # Remove the flaspbian directory
