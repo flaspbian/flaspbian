@@ -23,14 +23,14 @@ display_system_info() {
 
 # OK
 # Function to check and update .bashrc without duplicating entries
-update_bashrc() {
-  local entry="$1"
-  if ! grep -qF -- "$entry" ~/.bashrc; then
-    echo "$entry" >> ~/.bashrc
-    echo "Added $entry to ~/.bashrc. Please source ~/.bashrc to update your session."
-  fi
-  source ~/.bashrc
-}
+# update_bashrc() {
+#   local entry="$1"
+#   if ! grep -qF -- "$entry" ~/.bashrc; then
+#     echo "$entry" >> ~/.bashrc
+#     echo "Added $entry to ~/.bashrc. Please source ~/.bashrc to update your session."
+#   fi
+#   source ~/.bashrc
+# }
 
 # OK
 # System Update and Installation of Dependencies
@@ -114,7 +114,7 @@ install_engine() {
   cd ../..  # Ensure returning to the original directory
 
   # Set the FLAPPS_DIR environment variable
-  update_bashrc "export FLAPPS_DIR=$flapps_dir"
+  # update_bashrc "export FLAPPS_DIR=$flapps_dir"
 
   # Set boot options
   set_boot_options
@@ -168,7 +168,7 @@ update_engine() {
   popd  # Exit flaspbian directory
 
   # Set the FLAPPS_DIR environment variable
-  update_bashrc "export FLAPPS_DIR=$flapps_dir"
+  # update_bashrc "export FLAPPS_DIR=$flapps_dir"
 
   # Overwrite boot options
   set_boot_options
@@ -191,7 +191,7 @@ uninstall_engine() {
   done
 
   # Remove the FLAPPS_DIR environment variable
-  update_bashrc "unset FLAPPS_DIR"
+  # update_bashrc "unset FLAPPS_DIR"
 
   # Remove flapps directory
   if [[ -d $flapps_dir ]]; then
