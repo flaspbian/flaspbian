@@ -263,7 +263,7 @@ install_app() {
 
   app="$1"
   url="$2"
-  apparchive="~/$app.flapp"
+  apparchive="$user_home/$app.flapp"
 
   # Check for app and URL arguments
   if [[ -z "$app" ]] || [[ -z "$url" ]]; then
