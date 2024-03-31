@@ -2,7 +2,7 @@
 
 set -eo pipefail  # Exit on error and fail if a pipe fails
 
-flaspbian_dir="/home/endurance/flaspbian" # Set the Flaspbian directory
+flutter_pi_dir="/home/endurance/flutter-pi" # Set the Flaspbian directory
 flapps_dir="/home/endurance/.flapps" # Set the Flaspbian directory
 
 #OK
@@ -99,15 +99,15 @@ install_engine() {
   echo "Installing Flaspbian..."
 
   # Check if the Flaspbian directory exists
-  if [[ -d "$flaspbian_dir" ]]; then
+  if [[ -d "$flutter_pi_dir" ]]; then
     echo "Flaspbian directory already exists. Consider updating instead."
     exit 1
   fi
 
   update_and_install_dependencies
 
-  git clone https://github.com/flaspbian/flutter-pi.git
-  cd flaspbian || exit
+  git clone https://github.com/flaspbian/flutter-pi.git "$flutter_pi_dir"
+  cd $flutter_pi_dir || exit
   mkdir -p build && cd build
   cmake ..
   make -j$(nproc) && sudo make install
@@ -121,7 +121,7 @@ install_engine() {
 update_engine() {
   echo "Checking for updates..."
   # Check if the Flaspbian directory exists
-  if [[ ! -d "$flaspbian_dir" ]]; then
+  if [[ ! -d "$flutter_pi_dir" ]]; then
     echo "Flaspbian directory not found, cannot update. Consider installing first."
     exit 1
   fi
@@ -129,7 +129,7 @@ update_engine() {
   update_and_install_dependencies
 
   # Navigate to the Flaspbian directory
-  pushd "$flaspbian_dir"
+  pushd "$flutter_pi_dir"
 
   # Display the repository URL
   echo "Repository URL: $(git remote get-url origin)"
@@ -188,8 +188,8 @@ uninstall_engine() {
   fi
 
   # Remove the flaspbian directory
-  if [[ -d "$flaspbian_dir" ]]; then
-    sudo rm -rf "$flaspbian_dir"
+  if [[ -d "$flutter_pi_dir" ]]; then
+    sudo rm -rf "$flutter_pi_dir"
   fi
 
   # Reset boot options to their defaults
