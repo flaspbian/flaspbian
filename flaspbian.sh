@@ -52,6 +52,12 @@ enable_3d_acceleration() {
   sudo usermod -a -G render $(whoami)
 }
 
+# Disable 3D Acceleration
+disable_3d_acceleration() {
+  echo "Disabling 3D acceleration..."
+  sudo usermod -G render $(whoami)
+}
+
 # Set Boot Options
 set_boot_options() {
   echo "Setting boot options..."
@@ -104,6 +110,7 @@ install_engine() {
     exit 1
   fi
 
+  # Update and install dependencies
   update_and_install_dependencies
 
   git clone https://github.com/flaspbian/flutter-pi.git "$flutter_pi_dir"
@@ -112,6 +119,14 @@ install_engine() {
   cmake ..
   make -j$(nproc) && sudo make install
   cd ../..  # Ensure returning to the original directory
+
+  # Create the flapps directory, if it doesn't exist
+  if [[ ! -d "$flapps_dir" ]]; then
+    mkdir -p "$flapps_dir"
+  fi
+
+  # Enable 3D acceleration
+  enable_3d_acceleration
 
   # Set boot options
   set_boot_options
@@ -163,6 +178,14 @@ update_engine() {
   # Return to the original directory
   popd  # Exit build directory
   popd  # Exit flaspbian directory
+
+  # Create the flapps directory, if it doesn't exist
+  if [[ ! -d "$flapps_dir" ]]; then
+    mkdir -p "$flapps_dir"
+  fi
+
+  # Enable 3D acceleration
+  enable_3d_acceleration
 
   # Overwrite boot options
   set_boot_options
