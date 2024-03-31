@@ -266,7 +266,7 @@ install_app() {
 
   # Check for app and URL arguments
   if [[ -z "$app" ]] || [[ -z "$url" ]]; then
-    echo "Usage: $0 <app> <url>"
+    echo "Usage: $1 <app> <url>"
     exit 1
   fi
 
