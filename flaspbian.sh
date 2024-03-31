@@ -192,6 +192,7 @@ uninstall_engine() {
     sudo rm -rf "$flutter_pi_dir"
   fi
 
+  # Issue: when setting boot options to default, doesnt execute further commands
   # Reset boot options to their defaults
   reset_boot_options
 
