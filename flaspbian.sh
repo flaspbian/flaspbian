@@ -113,9 +113,6 @@ install_engine() {
   make -j$(nproc) && sudo make install
   cd ../..  # Ensure returning to the original directory
 
-  # Set the FLAPPS_DIR environment variable
-  # update_bashrc "export FLAPPS_DIR=$flapps_dir"
-
   # Set boot options
   set_boot_options
 }
@@ -167,9 +164,6 @@ update_engine() {
   popd  # Exit build directory
   popd  # Exit flaspbian directory
 
-  # Set the FLAPPS_DIR environment variable
-  # update_bashrc "export FLAPPS_DIR=$flapps_dir"
-
   # Overwrite boot options
   set_boot_options
 
@@ -185,16 +179,12 @@ uninstall_engine() {
     sudo systemctl stop *.flapp.service
   fi
   
-  # Remove app services
-  for app in $(ls $flapps_dir); do
-    remove_app_service
-  done
-
-  # Remove the FLAPPS_DIR environment variable
-  # update_bashrc "unset FLAPPS_DIR"
-
   # Remove flapps directory
   if [[ -d $flapps_dir ]]; then
+    # Remove app services
+    for app in $(ls $flapps_dir); do
+      remove_app_service
+    done
     sudo rm -rf $flapps_dir
   fi
 
