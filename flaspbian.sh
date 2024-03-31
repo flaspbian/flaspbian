@@ -106,7 +106,7 @@ install_engine() {
 
   update_and_install_dependencies
 
-  git clone https://github.com/flaspbian/flaspbian.git
+  git clone https://github.com/flaspbian/flutter-pi.git
   cd flaspbian || exit
   mkdir -p build && cd build
   cmake ..
