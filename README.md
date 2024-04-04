@@ -1,4 +1,4 @@
-# Flaspbian
+# Flaspbian Shell
 Flaspbian brings the power of Flutter to Linux Embedded Systems, enabling the deployment of beautiful, natively-compiled applications for desktop from a single codebase.
 
 ## Getting Started
